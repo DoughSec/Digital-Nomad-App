@@ -5,6 +5,7 @@ import java.time.LocalTime;
 public class Flight {
     private int flightId;
     private int flightCost;
+//    private int flightName;
     private int travelTime;
     private LocalTime startTime;
     private LocalTime endTime;
