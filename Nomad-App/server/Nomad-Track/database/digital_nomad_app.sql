@@ -5,11 +5,11 @@ BEGIN TRANSACTION;
 -- Drop all db objects in the proper order
 -- *************************************************************************************************
 DROP TABLE IF EXISTS flights;
-DROP TABLE IF EXISTS users;
-DROP TABLE IF EXISTS reviews;
 DROP TABLE IF EXISTS locations;
+DROP TABLE IF EXISTS reviews;
 DROP TABLE IF EXISTS lodgings;
 DROP TABLE IF EXISTS trips;
+DROP TABLE IF EXISTS users;
 
 -- *************************************************************************************************
 -- Create the tables and constraints
@@ -20,8 +20,8 @@ CREATE TABLE flights (
 	flight_id SERIAL,
 	flight_cost integer NOT NULL,
 	travel_time integer NOT NULL,
-	flight_start_time LOCAL NOT NULL,
-	flight_end_time LOCAL NOT NULL,
+	flight_start_time TIMESTAMP NOT NULL,
+	flight_end_time TIMESTAMP NOT NULL,
 	CONSTRAINT PK_flight PRIMARY KEY (flight_id)
 );
 
@@ -37,7 +37,7 @@ CREATE TABLE users (
 --reviews
 CREATE TABLE reviews (
 	review_id SERIAL,
-	rating double NOT NULL,
+	rating decimal NOT NULL,
 	comment varchar(50) NOT NULL,
 	CONSTRAINT PK_review PRIMARY KEY (review_id)
 );
@@ -55,10 +55,10 @@ CREATE TABLE locations (
 
 CREATE TABLE lodgings (
 	lodging_id SERIAL,
-	lodgingCostPerNight integer NOT NULL,
-	totalLodgingCost integer NOT NULL,
-	distanceFromAirport integer NOT NULL,
-	nightsStayed integer NOT NULL,
+	lodging_cost_per_night integer NOT NULL,
+	total_lodging_cost integer NOT NULL,
+	distance_from_airport integer NOT NULL,
+	nights_to_stay integer NOT NULL,
 	CONSTRAINT PK_lodging PRIMARY KEY (lodging_id)
 );
 
@@ -68,8 +68,8 @@ CREATE TABLE trips (
 	user_id INT NOT NULL,
 	trip_cost INT NOT NULL,
 	description varchar(500) NOT NULL,
-	dateFrom LocalDate NOT NULL,
-	dateTo LocalDate NOT NULL,
+	date_from date NOT NULL,
+	date_to date NOT NULL,
 	CONSTRAINT PK_trip PRIMARY KEY (trip_id),
 	CONSTRAINT PK_trip_user FOREIGN KEY(user_id) REFERENCES users(user_id)
 );
@@ -78,9 +78,6 @@ CREATE TABLE trips (
 -- Insert some sample starting data
 -- *************************************************************************************************
 
-INSERT INTO
-
-VALUES
 
 -- Users
 -- Password for all users is password
@@ -91,14 +88,6 @@ VALUES
     ('user', '$2y$10$TTc7bgBcYELeMeVUpJb4KeIQfvSJZlYZYKyJCRo8ZBOwFkVis190e','ROLE_USER'),
     --2
     ('admin','$2y$10$5FTtQt8/lwoeZi.LeRPaRuxioNuEJcVzg7XIa5NinhnJIKLXPt5jy','ROLE_ADMIN');
-
-INSERT INTO
-
-VALUES
-
-INSERT INTO
-
-VALUES
 
 
 COMMIT TRANSACTION;

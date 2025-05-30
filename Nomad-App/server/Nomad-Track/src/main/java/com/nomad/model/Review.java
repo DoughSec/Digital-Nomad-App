@@ -14,6 +14,8 @@ public class Review {
         this.comment = comment;
     }
 
+    public Review() {}
+
     public int getReviewId() {
         return reviewId;
     }

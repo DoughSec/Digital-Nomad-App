@@ -16,15 +16,17 @@ public class Location {
     private int reviewId;
 
     //TODO: How will I access images here???
-    private List<String> imgURL;
+    private String imgURL;
 
-    public Location(int locationId, String city, String address, int reviewId, List<String> imgURL) {
+    public Location(int locationId, String city, String address, int reviewId, String imgURL) {
         this.locationId = locationId;
         this.city = city;
         this.address = address;
         this.reviewId = reviewId;
         this.imgURL = imgURL;
     }
+
+    public Location() {}
 
     public int getLocationId() {
         return locationId;
@@ -58,11 +60,11 @@ public class Location {
         this.reviewId = reviewId;
     }
 
-    public List<String> getImgURL() {
+    public String getImgURL() {
         return imgURL;
     }
 
-    public void setImgURL(List<String> imgURL) {
+    public void setImgURL(String imgURL) {
         this.imgURL = imgURL;
     }
 }

@@ -9,18 +9,22 @@ public class Trip {
 //    -Description
 //    -Dates
     private int tripId;
-    private int cost;
+    private int userId;
+    private int tripCost;
     private String description;
     private LocalDate dateFrom;
     private LocalDate dateTo;
 
-    public Trip(int tripId, int cost, String description, LocalDate dateFrom, LocalDate dateTo) {
+    public Trip(int tripId, int userId, int tripCost, String description, LocalDate dateFrom, LocalDate dateTo) {
         this.tripId = tripId;
-        this.cost = cost;
+        this.userId = userId;
+        this.tripCost = tripCost;
         this.description = description;
         this.dateFrom = dateFrom;
         this.dateTo = dateTo;
     }
+
+    public Trip() {}
 
     public int getTripId() {
         return tripId;
@@ -30,12 +34,20 @@ public class Trip {
         this.tripId = tripId;
     }
 
-    public int getCost() {
-        return cost;
+    public int getUserId() {
+        return userId;
     }
 
-    public void setCost(int cost) {
-        this.cost = cost;
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
+
+    public int getTripCost() {
+        return tripCost;
+    }
+
+    public void setTripCost(int tripCost) {
+        this.tripCost = tripCost;
     }
 
     public String getDescription() {

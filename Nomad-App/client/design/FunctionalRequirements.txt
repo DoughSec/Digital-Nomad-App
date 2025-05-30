@@ -1,8 +1,0 @@
-1: As an authenticated user(ADMIN OR USER), I can click the "Services" link on the navigation bar to visit my services.
-2: As an authenticated user(ADMIN), on the Bookings page, I can view the bookings list as a table view.
-3: As an authenticated user(USER), on the Clients page, I can register as a client.
-4: As an authenticated user(ADMIN OR USER), I can click the "My Availability" link on the navigation bar to view reagan's availability.
-5: As an authenticated user(ADMIN OR USER), I can click the "Home" link on the navigation bar to visit the home page if on another tab.
-6: As an authenticated user(ADMIN), on the Clients page, I can click the "Clients" link on the navigation bar and view a table of all of my current registered clients.
-7: As an authenticated user(ADMIN), on the Services page, I can add a new service to my current list of services.
-7: As an authenticated user(ADMIN), I can click the "Bookings" link on the navigation bar to visit my current or old bookings as a table view.

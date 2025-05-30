@@ -5,15 +5,17 @@ public class Lodging {
     private int lodgingCostPerNight;
     private int totalLodgingCost;
     private int distanceFromAirport;
-    private int nightsStayed;
+    private int nightsToStay;
 
-    public Lodging(int lodgingId, int lodgingCostPerNight, int totalLodgingCost, int distanceFromAirport, int nightsStayed) {
+    public Lodging(int lodgingId, int lodgingCostPerNight, int totalLodgingCost, int distanceFromAirport, int nightsToStay) {
         this.lodgingId = lodgingId;
         this.lodgingCostPerNight = lodgingCostPerNight;
         this.totalLodgingCost = totalLodgingCost;
         this.distanceFromAirport = distanceFromAirport;
-        this.nightsStayed = nightsStayed;
+        this.nightsToStay = nightsToStay;
     }
+
+    public Lodging() {}
 
     public int getLodgingId() {
         return lodgingId;
@@ -36,7 +38,7 @@ public class Lodging {
     }
 
     public void setTotalLodgingCost() {
-        this.totalLodgingCost = this.lodgingCostPerNight * this.nightsStayed;
+        this.totalLodgingCost = this.lodgingCostPerNight * this.nightsToStay;
     }
 
     public int getDistanceFromAirport() {
@@ -47,11 +49,11 @@ public class Lodging {
         this.distanceFromAirport = distanceFromAirport;
     }
 
-    public int getNightsStayed() {
-        return nightsStayed;
+    public int getNightsToStay() {
+        return nightsToStay;
     }
 
-    public void setNightsStayed(int nightsStayed) {
-        this.nightsStayed = nightsStayed;
+    public void setNightsToStay(int nightsToStay) {
+        this.nightsToStay = nightsToStay;
     }
 }

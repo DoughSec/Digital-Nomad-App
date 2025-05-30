@@ -18,6 +18,8 @@ public class Flight {
         this.endTime = endTime;
     }
 
+    public Flight() {}
+
     public int getFlightId() {
         return flightId;
     }
