@@ -1,0 +1,8 @@
+FUNCTIONAL REQUIREMENTS
+----------------------------------------------------------------------------------------------------------------
+1: As an authenticated user(Admin), I can view a list of my client appointments/bookings
+2: As an authenticated user(logged in as a User), I can create a booking/appointment
+3: As an authenticated user(logged in as a User), I can update my existing booking/appointment
+4: As an authenticated user(logged in as a User), I can delete my existing booking/appointment
+5: As an unauthenticated user, I can view the stylist's availability
+6: As an authenticated user(logged in as a user), I can view my own appointment(s)/bookings
