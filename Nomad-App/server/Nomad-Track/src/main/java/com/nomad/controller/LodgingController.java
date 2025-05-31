@@ -17,11 +17,12 @@ import java.util.List;
 public class LodgingController {
 
     private LodgingDao lodgingDao;
-    private Lodging lodging;
+//    private LodgingService lodgingService;
 
-    public LodgingController(LodgingDao lodgingDao, Lodging lodging) {
+    //TODO: Add lodgingService
+    public LodgingController(LodgingDao lodgingDao) {
         this.lodgingDao = lodgingDao;
-        this.lodging = lodging;
+//        this.lodgingService = lodgingService;
     }
     @ResponseStatus(HttpStatus.OK)
     @PreAuthorize("permitAll")

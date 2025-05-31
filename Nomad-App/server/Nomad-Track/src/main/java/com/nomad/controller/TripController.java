@@ -25,6 +25,7 @@ public class TripController {
     private UserService userService;
     private UserDao userDao;
 
+    //TODO: Add tripService
     public TripController(TripDao tripDao, UserDao userDao, UserService userService) {
         this.tripDao = tripDao;
         this.userDao = userDao;

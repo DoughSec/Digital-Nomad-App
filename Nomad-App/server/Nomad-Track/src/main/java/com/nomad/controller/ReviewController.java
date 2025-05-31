@@ -17,11 +17,12 @@ import java.util.List;
 public class ReviewController {
 
     private ReviewDao reviewDao;
-    private Review review;
+//    private ReviewService reviewService;
 
-    public ReviewController(ReviewDao reviewDao, Review review) {
+    //TODO: Add reviewService
+    public ReviewController(ReviewDao reviewDao) {
         this.reviewDao = reviewDao;
-        this.review = review;
+//        this.reviewService = reviewService;
     }
     @ResponseStatus(HttpStatus.OK)
     @PreAuthorize("permitAll")

@@ -16,11 +16,12 @@ import java.util.List;
 @PreAuthorize("isAuthenticated()")
 public class FlightController {
     private FlightDao flightDao;
-    private Flight flight;
+//    private FlightService flightService;
 
-    public FlightController(FlightDao flightDao, Flight flight) {
+    //TODO: Add FlightService
+    public FlightController(FlightDao flightDao) {
         this.flightDao = flightDao;
-        this.flight = flight;
+//        this.flight = flightService;
     }
     @ResponseStatus(HttpStatus.OK)
     @PreAuthorize("permitAll")

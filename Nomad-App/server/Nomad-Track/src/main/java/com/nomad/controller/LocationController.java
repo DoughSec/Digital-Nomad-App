@@ -17,11 +17,12 @@ import java.util.List;
 @PreAuthorize("isAuthenticated()")
 public class LocationController {
     private LocationDao locationDao;
-    private Location location;
+//    private LocationService locationService;
 
-    public LocationController(LocationDao locationDao, Location location) {
+    //TODO: Add locationService
+    public LocationController(LocationDao locationDao) {
         this.locationDao = locationDao;
-        this.location = location;
+//        this.locationService = locationService;
     }
     @ResponseStatus(HttpStatus.OK)
     @PreAuthorize("permitAll")
