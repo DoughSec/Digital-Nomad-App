@@ -70,10 +70,8 @@ public class JdbcLodgingDao implements LodgingDao {
         Lodging newLodging = null;
         String sql = "INSERT INTO lodgings (lodging_cost_per_night, total_lodging_cost, distance_from_airport, nights_to_stay) VALUES (?, ?, ?, ?) RETURNING lodging_id";
         try {
-            //TODO
-            //userClient.getUserId()
-//            int LodgingId = jdbcTemplate.queryForObject(sql, int.class, 13, Lodging.getServiceId(), Lodging.getAppointmentDate(), Lodging.getAppointmentStartTime(), Lodging.getAppointmentEndTime());
-//            newLodging = getLodgingById(LodgingId);
+            int lodgingId = jdbcTemplate.queryForObject(sql, int.class, lodging.getLodgingCostPerNight(), lodging.getTotalLodgingCost(), lodging.getDistanceFromAirport(), lodging.getNightsToStay());
+            newLodging = getLodgingById(lodgingId);
         } catch (CannotGetJdbcConnectionException e) {
             throw new DaoException("Unable to connect to server or database", e);
         } catch (DataIntegrityViolationException e) {
@@ -87,11 +85,10 @@ public class JdbcLodgingDao implements LodgingDao {
         Lodging updatedLodging = null;
         String sql = "UPDATE lodgings SET lodging_id = ?, lodging_cost_per_night = ?, total_lodging_cost = ?, distance_from_airport = ?, nights_to_stay = ? WHERE lodging_id = ?";
         try {
-            //TODO
-//            int rowsAffected = jdbcTemplate.update(sql, changedLodging.getLodgingId(), changedLodging.getUserId(), changedLodging.getServiceId(), changedLodging.getAppointmentDate(), changedLodging.getAppointmentStartTime(), changedLodging.getAppointmentEndTime(), changedLodging.getLodgingId(), userClient.getUserId());
-//            if (rowsAffected == 0) {
-//                throw new DaoException("Zero rows affected, expected at least one");
-//            }
+            int rowsAffected = jdbcTemplate.update(sql, changedLodging.getLodgingId(), changedLodging.getLodgingCostPerNight(), changedLodging.getTotalLodgingCost(), changedLodging.getDistanceFromAirport(), changedLodging.getNightsToStay(), changedLodging.getLodgingId());
+            if (rowsAffected == 0) {
+                throw new DaoException("Zero rows affected, expected at least one");
+            }
             updatedLodging = getLodgingById(changedLodging.getLodgingId());
         } catch (CannotGetJdbcConnectionException e) {
             throw new DaoException("Unable to connect to server or database", e);

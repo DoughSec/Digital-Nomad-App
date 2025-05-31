@@ -70,10 +70,8 @@ public class JdbcReviewDao implements ReviewDao {
         Review newReview = null;
         String sql = "INSERT INTO reviews (rating, comment) VALUES (?, ?) RETURNING Review_id";
         try {
-            //TODO
-            //userClient.getUserId()
-//            int ReviewId = jdbcTemplate.queryForObject(sql, int.class, 13, Review.getServiceId(), Review.getAppointmentDate(), Review.getAppointmentStartTime(), Review.getAppointmentEndTime());
-//            newReview = getReviewById(ReviewId);
+            int reviewId = jdbcTemplate.queryForObject(sql, int.class, review.getRating(), review.getComment());
+            newReview = getReviewById(reviewId);
         } catch (CannotGetJdbcConnectionException e) {
             throw new DaoException("Unable to connect to server or database", e);
         } catch (DataIntegrityViolationException e) {
@@ -85,13 +83,12 @@ public class JdbcReviewDao implements ReviewDao {
     @Override
     public Review updateReview(Review changedReview) {
         Review updatedReview = null;
-        String sql = "UPDATE Reviews SET review_id = ?, rating = ?, comment = ? WHERE review_id = ?";
+        String sql = "UPDATE reviews SET review_id = ?, rating = ?, comment = ? WHERE review_id = ?";
         try {
-            //TODO
-//            int rowsAffected = jdbcTemplate.update(sql, changedReview.getReviewId(), changedReview.getUserId(), changedReview.getServiceId(), changedReview.getAppointmentDate(), changedReview.getAppointmentStartTime(), changedReview.getAppointmentEndTime(), changedReview.getReviewId(), userClient.getUserId());
-//            if (rowsAffected == 0) {
-//                throw new DaoException("Zero rows affected, expected at least one");
-//            }
+            int rowsAffected = jdbcTemplate.update(sql, changedReview.getReviewId(), changedReview.getRating(), changedReview.getComment(), changedReview.getReviewId());
+            if (rowsAffected == 0) {
+                throw new DaoException("Zero rows affected, expected at least one");
+            }
             updatedReview = getReviewById(changedReview.getReviewId());
         } catch (CannotGetJdbcConnectionException e) {
             throw new DaoException("Unable to connect to server or database", e);

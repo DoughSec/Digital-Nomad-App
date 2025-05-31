@@ -54,10 +54,8 @@ public class JdbcLocationDao implements LocationDao {
         Location newLocation = null;
         String sql = "INSERT INTO locations (review_id, city, address, imgurl) VALUES (?, ?, ?, ?) RETURNING location_id";
         try {
-            //TODO
-            //userClient.getUserId()
-//            int LocationId = jdbcTemplate.queryForObject(sql, int.class, 13, Location.getServiceId(), Location.getAppointmentDate(), Location.getAppointmentStartTime(), Location.getAppointmentEndTime());
-//            newLocation = getLocationById(LocationId);
+            int locationId = jdbcTemplate.queryForObject(sql, int.class, location.getReviewId(), location.getCity(), location.getAddress(), location.getImgURL());
+            newLocation = getLocationById(locationId);
         } catch (CannotGetJdbcConnectionException e) {
             throw new DaoException("Unable to connect to server or database", e);
         } catch (DataIntegrityViolationException e) {
@@ -71,11 +69,10 @@ public class JdbcLocationDao implements LocationDao {
         Location updatedLocation = null;
         String sql = "UPDATE locations SET location_id = ?, review_id = ?, city = ?, address = ?, imgurl = ? WHERE location_id = ?";
         try {
-            //TODO
-//            int rowsAffected = jdbcTemplate.update(sql, changedLocation.getLocationId(), changedLocation.getUserId(), changedLocation.getServiceId(), changedLocation.getAppointmentDate(), changedLocation.getAppointmentStartTime(), changedLocation.getAppointmentEndTime(), changedLocation.getLocationId(), userClient.getUserId());
-//            if (rowsAffected == 0) {
-//                throw new DaoException("Zero rows affected, expected at least one");
-//            }
+            int rowsAffected = jdbcTemplate.update(sql, changedLocation.getLocationId(), changedLocation.getReviewId(), changedLocation.getCity(), changedLocation.getAddress(), changedLocation.getImgURL(), changedLocation.getLocationId());
+            if (rowsAffected == 0) {
+                throw new DaoException("Zero rows affected, expected at least one");
+            }
             updatedLocation = getLocationById(changedLocation.getLocationId());
         } catch (CannotGetJdbcConnectionException e) {
             throw new DaoException("Unable to connect to server or database", e);

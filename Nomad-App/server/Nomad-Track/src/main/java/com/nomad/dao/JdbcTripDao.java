@@ -65,14 +65,12 @@ public class JdbcTripDao implements TripDao {
     }
 
     @Override
-    public Trip createTrip(Trip Trip, User user) {
+    public Trip createTrip(Trip trip, User user) {
         Trip newTrip = null;
         String sql = "INSERT INTO trips (user_id, trip_cost, description, date_from, date_to) VALUES (?, ?, ?, ?, ?) RETURNING trip_id";
         try {
-            //TODO
-            //userClient.getUserId()
-//            int TripId = jdbcTemplate.queryForObject(sql, int.class, 13, Trip.getServiceId(), Trip.getAppointmentDate(), Trip.getAppointmentStartTime(), Trip.getAppointmentEndTime());
-//            newTrip = getTripById(TripId);
+            int TripId = jdbcTemplate.queryForObject(sql, int.class, user.getId(), trip.getTripCost(), trip.getDescription(), trip.getDateFrom(), trip.getDateTo());
+            newTrip = getTripById(TripId);
         } catch (CannotGetJdbcConnectionException e) {
             throw new DaoException("Unable to connect to server or database", e);
         } catch (DataIntegrityViolationException e) {
@@ -86,11 +84,10 @@ public class JdbcTripDao implements TripDao {
         Trip updatedTrip = null;
         String sql = "UPDATE trips SET trip_id = ?, user_id = ?, trip_cost = ?, description = ?, date_from = ?, date_to = ? WHERE trip_id = ? AND user_id = ?";
         try {
-            //TODO
-//            int rowsAffected = jdbcTemplate.update(sql, changedTrip.getTripId(), changedTrip.getUserId(), changedTrip.getServiceId(), changedTrip.getAppointmentDate(), changedTrip.getAppointmentStartTime(), changedTrip.getAppointmentEndTime(), changedTrip.getTripId(), userClient.getUserId());
-//            if (rowsAffected == 0) {
-//                throw new DaoException("Zero rows affected, expected at least one");
-//            }
+            int rowsAffected = jdbcTemplate.update(sql, changedTrip.getTripId(), changedTrip.getUserId(), changedTrip.getTripCost(), changedTrip.getDescription(), changedTrip.getDateFrom(), changedTrip.getDateTo(), changedTrip.getTripId(), user.getId());
+            if (rowsAffected == 0) {
+                throw new DaoException("Zero rows affected, expected at least one");
+            }
             updatedTrip = getTripById(changedTrip.getTripId());
         } catch (CannotGetJdbcConnectionException e) {
             throw new DaoException("Unable to connect to server or database", e);

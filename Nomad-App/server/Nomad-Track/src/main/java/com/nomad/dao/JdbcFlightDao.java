@@ -52,14 +52,12 @@ public class JdbcFlightDao implements FlightDao {
 
 
     @Override
-    public Flight createFlight(Flight flight, User user) {
+    public Flight createFlight(Flight flight) {
         Flight newFlight = null;
         String sql = "INSERT INTO flights (flight_cost, travel_time, flight_start_time, flight_end_time) VALUES (?, ?, ?, ?) RETURNING flight_id";
         try {
-            //TODO
-            //userClient.getUserId()
-//            int FlightId = jdbcTemplate.queryForObject(sql, int.class, 13, Flight.getServiceId(), Flight.getAppointmentDate(), Flight.getAppointmentStartTime(), Flight.getAppointmentEndTime());
-//            newFlight = getFlightById(FlightId);
+            int flightId = jdbcTemplate.queryForObject(sql, int.class, flight.getFlightCost(), flight.getTravelTime(), flight.getStartTime(), flight.getEndTime());
+            newFlight = getFlightById(flightId);
         } catch (CannotGetJdbcConnectionException e) {
             throw new DaoException("Unable to connect to server or database", e);
         } catch (DataIntegrityViolationException e) {
@@ -73,11 +71,10 @@ public class JdbcFlightDao implements FlightDao {
         Flight updatedFlight = null;
         String sql = "UPDATE flights SET flight_id = ?, flight_cost = ?, travel_time = ?, flight_start_time = ?, flight_end_time = ? WHERE flight_id = ?";
         try {
-            //TODO
-//            int rowsAffected = jdbcTemplate.update(sql, changedFlight.getFlightId(), changedFlight.getUserId(), changedFlight.getServiceId(), changedFlight.getAppointmentDate(), changedFlight.getAppointmentStartTime(), changedFlight.getAppointmentEndTime(), changedFlight.getFlightId(), userClient.getUserId());
-//            if (rowsAffected == 0) {
-//                throw new DaoException("Zero rows affected, expected at least one");
-//            }
+            int rowsAffected = jdbcTemplate.update(sql, changedFlight.getFlightId(), changedFlight.getFlightCost(), changedFlight.getTravelTime(), changedFlight.getStartTime(), changedFlight.getEndTime(), changedFlight.getFlightId());
+            if (rowsAffected == 0) {
+                throw new DaoException("Zero rows affected, expected at least one");
+            }
             updatedFlight = getFlightById(changedFlight.getFlightId());
         } catch (CannotGetJdbcConnectionException e) {
             throw new DaoException("Unable to connect to server or database", e);
