@@ -1,0 +1,20 @@
+Ideas on how to flesh out the app:
+-Personal nomad app vs itinerary travel guide?
+
+    --Personal app: Someone who likes to travel can use the app for adding trips to their wishlist and organize the whole planning process,
+    there would be a map that is able to be interacted with and holds pins for each location(hover effect, v-on:click effect). There
+    will be a navigation bar, header, footer, and main body that incorporates the map. Users can view available lodging that is
+    in the area desired, flights to get there in reference to where they want to depart from, etc
+
+    --Itinerary guide: Shows a bunch of locations to travel to and still has the features of the personal app, includes
+    all a list of things to do and places to go within a location once a trip is decided. Less like a personal journal and more of a
+    helper for other people.
+
+-What do checks will I need in order to make this happen?
+    --Find a way to link external websites that have lodging of some sort(airbnb, vrbo, hotels) and have users enter the data
+    for the lodging(cost, distance, etc.)
+    --Add links to expedia, or other websites that retain potential cost information regarding flights and have the user type in the
+    information needed regarding the flight.
+    --Review service: Add a way for users to interact with a trip where they can leave ratings and a comment on how the trip went(CHECK HERE,
+    ONLY ABLE TO DO IF VISITED THAT LOCATION)
+    --Add a link to websites/blogs/photos representing that location
